@@ -44,7 +44,14 @@ var CentroAdapter = function CentroAdapter() {
 
     if (bid.page_url) {
       query.push('url=' + encodeURIComponent(bid.page_url));
+    } else {
+      try {
+        query.push('url=' + encodeURIComponent(window.location.href));
+      } catch(err) {
+        utils.logWarn('Could not retrieve window.location.href to pass to Centro');
+      }
     }
+
     //check size format
     if (
       size instanceof Array &&

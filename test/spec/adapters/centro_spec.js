@@ -98,7 +98,7 @@ describe('centro adapter tests', function () {
             expect(parsedBidUrl.pathname).to.equal('/hb');
 
             expect(parsedBidUrlQueryString).to.have.property('s').and.to.equal('28137');
-            expect(parsedBidUrlQueryString).to.not.have.property('url');
+            expect(parsedBidUrlQueryString).to.have.property('url');
             expect(parsedBidUrlQueryString).to.have.property('sz').and.to.equal('728x90');
             expect(parsedBidUrlQueryString).to.have.property('callback').and.to.equal(generatedCallback);
         });
