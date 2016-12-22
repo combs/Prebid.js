@@ -23,7 +23,6 @@ var objectType_function = 'function';
 var objectType_undefined = 'undefined';
 var objectType_object = 'object';
 var BID_WON = CONSTANTS.EVENTS.BID_WON;
-var AUCTION_END = CONSTANTS.EVENTS.AUCTION_END;
 
 var auctionRunning = false;
 var bidRequestQueue = [];
@@ -485,7 +484,6 @@ $$PREBID_GLOBAL$$.removeAdUnit = function (adUnitCode) {
 $$PREBID_GLOBAL$$.clearAuction = function() {
   auctionRunning = false;
   utils.logMessage('Prebid auction cleared');
-  events.emit(AUCTION_END);
   if (bidRequestQueue.length) {
     bidRequestQueue.shift()();
   }
@@ -529,8 +527,6 @@ $$PREBID_GLOBAL$$.requestBids = function ({ bidsBackHandler, timeout, adUnits, a
   }
 
   auctionRunning = true;
-
-  utils.logInfo('Invoking $$PREBID_GLOBAL$$.requestBids', arguments);
 
   // we will use adUnitCodes for filtering the current auction
   $$PREBID_GLOBAL$$._adUnitCodes = adUnitCodes;
